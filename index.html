@@ -1,401 +1,419 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SLAP!</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                overflow: hidden;
-                font-family: "Comic Sans MS", cursive;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>SLAP!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow: hidden;
+        font-family: "Comic Sans MS", cursive;
+      }
 
-            .container {
-                position: relative;
-                width: 80%;
-                max-width: 1000px;
-                height: 500px;
-            }
+      .container {
+        position: relative;
+        width: 80%;
+        max-width: 1000px;
+        height: 500px;
+      }
 
-            .photo {
-                position: absolute;
-                width: 300px;
-                height: 300px;
-                object-fit: cover;
-                border-radius: 50%;
-                border: 5px solid white;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            }
+      .photo {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
 
-            .slapper {
-                left: -400px;
-                top: 100px;
-                z-index: 10;
-            }
+      .slapper {
+        left: -400px;
+        top: 100px;
+        z-index: 10;
+      }
 
-            .victim {
-                right: 100px;
-                top: 100px;
-            }
+      .victim {
+        right: 100px;
+        top: 100px;
+      }
 
-            .slapper.slapping {
-                animation: slap 2s ease-in-out;
-            }
+      .slapper.slapping {
+        animation: slap 2s ease-in-out;
+      }
 
-            .victim.getting-slapped {
-                animation: shake 0.5s ease-in-out 1.5s;
-            }
+      .victim.getting-slapped {
+        animation: shake 0.5s ease-in-out 1.5s;
+      }
 
-            @keyframes slap {
-                0% {
-                    left: -400px;
-                    transform: rotate(0deg);
-                }
-                60% {
-                    left: 400px;
-                    transform: rotate(360deg);
-                }
-                70% {
-                    left: 420px;
-                    transform: rotate(375deg);
-                }
-                100% {
-                    left: -400px;
-                    transform: rotate(720deg);
-                }
-            }
+      @keyframes slap {
+        0% {
+          left: -400px;
+          transform: rotate(0deg);
+        }
+        60% {
+          left: 400px;
+          transform: rotate(360deg);
+        }
+        70% {
+          left: 420px;
+          transform: rotate(375deg);
+        }
+        100% {
+          left: -400px;
+          transform: rotate(720deg);
+        }
+      }
 
-            @keyframes shake {
-                0%,
-                100% {
-                    transform: translateX(0) rotate(0deg);
-                }
-                10% {
-                    transform: translateX(-20px) rotate(-10deg);
-                }
-                20% {
-                    transform: translateX(20px) rotate(10deg);
-                }
-                30% {
-                    transform: translateX(-20px) rotate(-10deg);
-                }
-                40% {
-                    transform: translateX(20px) rotate(10deg);
-                }
-                50% {
-                    transform: translateX(-10px) rotate(-5deg);
-                }
-                60% {
-                    transform: translateX(10px) rotate(5deg);
-                }
-                70% {
-                    transform: translateX(-5px) rotate(-2deg);
-                }
-                80% {
-                    transform: translateX(5px) rotate(2deg);
-                }
-                90% {
-                    transform: translateX(-2px) rotate(-1deg);
-                }
-            }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0) rotate(0deg);
+        }
+        10% {
+          transform: translateX(-20px) rotate(-10deg);
+        }
+        20% {
+          transform: translateX(20px) rotate(10deg);
+        }
+        30% {
+          transform: translateX(-20px) rotate(-10deg);
+        }
+        40% {
+          transform: translateX(20px) rotate(10deg);
+        }
+        50% {
+          transform: translateX(-10px) rotate(-5deg);
+        }
+        60% {
+          transform: translateX(10px) rotate(5deg);
+        }
+        70% {
+          transform: translateX(-5px) rotate(-2deg);
+        }
+        80% {
+          transform: translateX(5px) rotate(2deg);
+        }
+        90% {
+          transform: translateX(-2px) rotate(-1deg);
+        }
+      }
 
-            .stars {
-                position: absolute;
-                font-size: 50px;
-                opacity: 0;
-                right: 50px;
-                top: 80px;
-            }
+      .stars {
+        position: absolute;
+        font-size: 50px;
+        opacity: 0;
+        right: 50px;
+        top: 80px;
+      }
 
-            .stars.show {
-                animation: showStars 1s ease-out 1.5s;
-            }
+      .stars.show {
+        animation: showStars 1s ease-out 1.5s;
+      }
 
-            @keyframes showStars {
-                0% {
-                    opacity: 0;
-                    transform: scale(0);
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1.5) rotate(180deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0.5) rotate(360deg);
-                }
-            }
+      @keyframes showStars {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.5) rotate(180deg);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5) rotate(360deg);
+        }
+      }
 
-            .text {
-                position: absolute;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 60px;
-                font-weight: bold;
-                color: white;
-                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-                opacity: 0;
-            }
+      .text {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 60px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+      }
 
-            .text.show {
-                animation: showText 1s ease-out 1.5s;
-            }
+      .text.show {
+        animation: showText 1s ease-out 1.5s;
+      }
 
-            @keyframes showText {
-                0% {
-                    opacity: 0;
-                    transform: translateX(-50%) scale(0);
-                }
-                50% {
-                    opacity: 1;
-                    transform: translateX(-50%) scale(1.3);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translateX(-50%) scale(0.8);
-                }
-            }
+      @keyframes showText {
+        0% {
+          opacity: 0;
+          transform: translateX(-50%) scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.3);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) scale(0.8);
+        }
+      }
 
-            .button {
-                position: absolute;
-                bottom: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 15px 40px;
-                font-size: 24px;
-                background: #ff6b6b;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                font-weight: bold;
-                transition: all 0.3s;
-            }
+      .button {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 40px;
+        font-size: 24px;
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        transition: all 0.3s;
+      }
 
-            .button:hover {
-                background: #ff5252;
-                transform: translateX(-50%) scale(1.1);
-            }
+      .button:hover {
+        background: #ff5252;
+        transform: translateX(-50%) scale(1.1);
+      }
 
-            .button:active {
-                transform: translateX(-50%) scale(0.95);
-            }
+      .button:active {
+        transform: translateX(-50%) scale(0.95);
+      }
 
-            /* Responsive per mobile */
-            @media (max-width: 768px) {
-                body {
-                    overflow-x: hidden;
-                }
+      /* Responsive per mobile */
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden;
+        }
 
-                .container {
-                    width: 100vw;
-                    height: 100vh;
-                    padding: 0;
-                }
+        .container {
+          width: 100vw;
+          height: 100vh;
+          padding: 0;
+        }
 
-                .photo {
-                    width: 140px;
-                    height: 140px;
-                    border: 3px solid white;
-                }
+        .photo {
+          width: 140px;
+          height: 140px;
+          border: 3px solid white;
+        }
 
-                .slapper {
-                    left: -180px;
-                    top: 45%;
-                    transform: translateY(-50%);
-                }
+        .slapper {
+          left: -180px;
+          top: 45%;
+          transform: translateY(-50%);
+        }
 
-                .victim {
-                    right: 30%;
-                    left: auto;
-                    top: 45%;
-                    transform: translateY(-50%);
-                }
+        .victim {
+          right: 30%;
+          left: auto;
+          top: 45%;
+          transform: translateY(-50%);
+        }
 
-                @keyframes slap {
-                    0% {
-                        left: -180px;
-                        transform: translateY(-50%) rotate(0deg);
-                    }
-                    60% {
-                        left: 50%;
-                        transform: translate(-50%, -50%) rotate(360deg);
-                    }
-                    70% {
-                        left: 52%;
-                        transform: translate(-50%, -50%) rotate(375deg);
-                    }
-                    100% {
-                        left: -180px;
-                        transform: translateY(-50%) rotate(720deg);
-                    }
-                }
+        @keyframes slap {
+          0% {
+            left: -180px;
+            transform: translateY(-50%) rotate(0deg);
+          }
+          60% {
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+          70% {
+            left: 52%;
+            transform: translate(-50%, -50%) rotate(375deg);
+          }
+          100% {
+            left: -180px;
+            transform: translateY(-50%) rotate(720deg);
+          }
+        }
 
-                @keyframes shake {
-                    0%, 100% {
-                        transform: translateY(-50%) translateX(0) rotate(0deg);
-                    }
-                    10% {
-                        transform: translateY(-50%) translateX(-15px) rotate(-8deg);
-                    }
-                    20% {
-                        transform: translateY(-50%) translateX(15px) rotate(8deg);
-                    }
-                    30% {
-                        transform: translateY(-50%) translateX(-15px) rotate(-8deg);
-                    }
-                    40% {
-                        transform: translateY(-50%) translateX(15px) rotate(8deg);
-                    }
-                    50% {
-                        transform: translateY(-50%) translateX(-8px) rotate(-4deg);
-                    }
-                    60% {
-                        transform: translateY(-50%) translateX(8px) rotate(4deg);
-                    }
-                    70% {
-                        transform: translateY(-50%) translateX(-4px) rotate(-2deg);
-                    }
-                    80% {
-                        transform: translateY(-50%) translateX(4px) rotate(2deg);
-                    }
-                    90% {
-                        transform: translateY(-50%) translateX(-2px) rotate(-1deg);
-                    }
-                }
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateY(-50%) translateX(0) rotate(0deg);
+          }
+          10% {
+            transform: translateY(-50%) translateX(-15px) rotate(-8deg);
+          }
+          20% {
+            transform: translateY(-50%) translateX(15px) rotate(8deg);
+          }
+          30% {
+            transform: translateY(-50%) translateX(-15px) rotate(-8deg);
+          }
+          40% {
+            transform: translateY(-50%) translateX(15px) rotate(8deg);
+          }
+          50% {
+            transform: translateY(-50%) translateX(-8px) rotate(-4deg);
+          }
+          60% {
+            transform: translateY(-50%) translateX(8px) rotate(4deg);
+          }
+          70% {
+            transform: translateY(-50%) translateX(-4px) rotate(-2deg);
+          }
+          80% {
+            transform: translateY(-50%) translateX(4px) rotate(2deg);
+          }
+          90% {
+            transform: translateY(-50%) translateX(-2px) rotate(-1deg);
+          }
+        }
 
-                .text {
-                    font-size: 40px;
-                    top: 15%;
-                    width: 90%;
-                }
+        .text {
+          font-size: 40px;
+          top: 15%;
+          width: 90%;
+        }
 
-                .stars {
-                    font-size: 35px;
-                    right: 15%;
-                    top: 35%;
-                }
+        .stars {
+          font-size: 35px;
+          right: 15%;
+          top: 35%;
+        }
 
-                .button {
-                    padding: 14px 35px;
-                    font-size: 20px;
-                    bottom: 50px;
-                }
+        .button {
+          padding: 14px 35px;
+          font-size: 20px;
+          bottom: 50px;
+        }
 
-                .button:hover {
-                    transform: translateX(-50%) scale(1.05);
-                }
-            }
+        .button:hover {
+          transform: translateX(-50%) scale(1.05);
+        }
+      }
 
-            @media (max-width: 480px) {
-                .photo {
-                    width: 110px;
-                    height: 110px;
-                }
+      @media (max-width: 480px) {
+        .photo {
+          width: 110px;
+          height: 110px;
+        }
 
-                .text {
-                    font-size: 32px;
-                    top: 12%;
-                }
+        .text {
+          font-size: 32px;
+          top: 12%;
+        }
 
-                .stars {
-                    font-size: 28px;
-                }
+        .stars {
+          font-size: 28px;
+        }
 
-                .button {
-                    padding: 12px 28px;
-                    font-size: 18px;
-                    bottom: 40px;
-                }
-            }
+        .button {
+          padding: 12px 28px;
+          font-size: 18px;
+          bottom: 40px;
+        }
+      }
 
-            @media (max-width: 360px) {
-                .photo {
-                    width: 100px;
-                    height: 100px;
-                }
+      @media (max-width: 360px) {
+        .photo {
+          width: 100px;
+          height: 100px;
+        }
 
-                .text {
-                    font-size: 28px;
-                }
+        .text {
+          font-size: 28px;
+        }
 
-                .stars {
-                    font-size: 24px;
-                }
+        .stars {
+          font-size: 24px;
+        }
 
-                .button {
-                    padding: 10px 24px;
-                    font-size: 16px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <img
-                src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="
-                class="photo slapper"
-                id="slapper"
-                alt="Slapper"
-            />
+        .button {
+          padding: 10px 24px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="
+        class="photo slapper"
+        id="slapper"
+        alt="Slapper"
+      />
 
-            <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
-                class="photo victim"
-                id="victim"
-                alt="Victim"
-            />
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+        class="photo victim"
+        id="victim"
+        alt="Victim"
+      />
 
-            <div class="stars" id="stars">⭐💫✨⭐</div>
-            <div class="text" id="text">SLAP! 👋</div>
+      <div
+        class="stars"
+        id="stars"
+      >
+        ⭐💫✨⭐
+      </div>
+      <div
+        class="text"
+        id="text"
+      >
+        SLAP! 👋
+      </div>
+      <div>
+        <button
+          class="button"
+          onclick="startAnimation()"
+        >
+          SCHIAFFO! 👋
+        </button>
+      </div>
+    </div>
 
-            <button class="button" onclick="startAnimation()">
-                SCHIAFFO! 👋
-            </button>
-        </div>
+    <script>
+      // Percorsi delle immagini
+      const slapperImg = "img/Screenshot 2025-11-27 181838.png";
+      const victimImg = "img/1763012788069_n.avif";
 
-        <script>
-            // Percorsi delle immagini
-            const slapperImg = "img/Screenshot 2025-11-27 181838.png";
-            const victimImg = "img/1763012788069_n.avif";
+      document.getElementById("slapper").src = slapperImg;
+      document.getElementById("victim").src = victimImg;
 
-            document.getElementById("slapper").src = slapperImg;
-            document.getElementById("victim").src = victimImg;
+      function startAnimation() {
+        const slapper = document.getElementById("slapper");
+        const victim = document.getElementById("victim");
+        const stars = document.getElementById("stars");
+        const text = document.getElementById("text");
 
-            function startAnimation() {
-                const slapper = document.getElementById("slapper");
-                const victim = document.getElementById("victim");
-                const stars = document.getElementById("stars");
-                const text = document.getElementById("text");
+        // Reset
+        slapper.classList.remove("slapping");
+        victim.classList.remove("getting-slapped");
+        stars.classList.remove("show");
+        text.classList.remove("show");
 
-                // Reset
-                slapper.classList.remove("slapping");
-                victim.classList.remove("getting-slapped");
-                stars.classList.remove("show");
-                text.classList.remove("show");
+        // Start
+        setTimeout(() => {
+          slapper.classList.add("slapping");
+          victim.classList.add("getting-slapped");
+          stars.classList.add("show");
+          text.classList.add("show");
+        }, 10);
+      }
 
-                // Start
-                setTimeout(() => {
-                    slapper.classList.add("slapping");
-                    victim.classList.add("getting-slapped");
-                    stars.classList.add("show");
-                    text.classList.add("show");
-                }, 10);
-            }
-
-            // Animazione automatica all'apertura
-            window.onload = () => {
-                setTimeout(startAnimation, 500);
-            };
-        </script>
-    </body>
+      // Animazione automatica all'apertura
+      window.onload = () => {
+        setTimeout(startAnimation, 500);
+      };
+    </script>
+  </body>
 </html>
